@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数値解析 語句クイズ</title>
+  <style>
+    .answer-toggle {
+      display: none;
+    }
+
+    .answer {
+      cursor: pointer;
+      filter: blur(0.4rem);
+    }
+
+    .answer-toggle:checked + .answer {
+      filter: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>第1週 数値解析</h2>
+  <ul>
+    <li>
+      絶対誤差：
+      <label>
+        <input class="answer-toggle" type="checkbox">
+        <span class="answer">absolute error</span>
+      </label>
+    </li>
+    <li>
+      相対誤差：
+      <label>
+        <input class="answer-toggle" type="checkbox">
+        <span class="answer">relative error</span>
+      </label>
+    </li>
+  </ul>
+</body>
+</html>
