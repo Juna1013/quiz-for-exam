@@ -20,27 +20,79 @@
   </style>
 </head>
 <body>
-  <h3>第1週 数値解析</h3>
+  <select id="week-select"></select>
+  <h3 id="week-title"></h3>
   <ul id="word-list"></ul>
   <script>
-    const words = [
-      { question: "絶対誤差", answer: "absolute error"},
-      { question: "相対誤差", answer: "relative error"},
+    const weeks = [
+      {
+        title: "第1週 数値解析",
+        words: [
+          { question: "数値解析", answer: "Numerical Analysis" },
+          { question: "数値計算", answer: "Numerical Computation" },
+          { question: "整数型", answer: "integer type" },
+          { question: "最上位ビット", answer: "Most Significant Bit" },
+          { question: "符号なし整数", answer: "unsigned integer" },
+          { question: "符号付き整数", answer: "signed integer" },
+          { question: "実数型", answer: "real type" },
+          { question: "符号", answer: "sign" },
+          { question: "仮数", answer: "mantissa" },
+          { question: "基数", answer: "base" },
+          { question: "指数", answer: "exponent or power" },
+          { question: "単精度", answer: "single precision" },
+          { question: "倍精度", answer: "double precision" },
+          { question: "真値", answer: "true value" },
+          { question: "近似値", answer: "approximate value" },
+          { question: "誤差", answer: "error" },
+          { question: "絶対誤差", answer: "absolute error" },
+          { question: "相対誤差", answer: "relative error" },
+          { question: "丸め誤差", answer: "round-off error" },
+          { question: "マクローリン級数展開", answer: "Maclaurin series expansion" },
+          { question: "打切り誤差", answer: "truncation error" },
+        ],
+      },
+      {
+        title: "第2週 ",
+        words: [
+          { question: "浮動小数点数", answer: "floating number" },
+        ],
+      },
     ];
 
+    const weekSelect = document.querySelector("#week-select");
+    const weekTitle = document.querySelector("#week-title");
     const list = document.querySelector("#word-list");
 
-    words.forEach(({ question, answer }) => {
-      list.innerHTML += `
-        <li>
-          ${question} :
-          <label>
-            <input class="answer-toggle" type="checkbox">
-            <span class="answer">${answer}</span>
-          </label>
-        </li>
+    weeks.forEach((week, index) => {
+      weekSelect.innerHTML += `
+        <option value="${index}">${week.title}</option>
       `;
     });
+
+    function displayWeek(index) {
+      const week = weeks[index];
+
+      weekTitle.textContent = week.title;
+      list.innerHTML = "";
+
+      week.words.forEach(({ question, answer }) => {
+        list.innerHTML += `
+          <li>
+            ${question} :
+            <label>
+              <input class="answer-toggle" type="checkbox">
+              <span class="answer">${answer}</span>
+            </label>
+          </li>
+        `;
+      });
+    }
+
+    weekSelect.addEventListener("change", (event) => {
+      displayWeek(event.target.value);
+    });
+
+    displayWeek(0);
   </script>
 </body>
 </html>
