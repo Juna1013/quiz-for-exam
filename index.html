@@ -20,22 +20,27 @@
   </style>
 </head>
 <body>
-  <h2>第1週 数値解析</h2>
-  <ul>
-    <li>
-      絶対誤差：
-      <label>
-        <input class="answer-toggle" type="checkbox">
-        <span class="answer">absolute error</span>
-      </label>
-    </li>
-    <li>
-      相対誤差：
-      <label>
-        <input class="answer-toggle" type="checkbox">
-        <span class="answer">relative error</span>
-      </label>
-    </li>
-  </ul>
+  <h3>第1週 数値解析</h3>
+  <ul id="word-list"></ul>
+  <script>
+    const words = [
+      { question: "絶対誤差", answer: "absolute error"},
+      { question: "相対誤差", answer: "relative error"},
+    ];
+
+    const list = document.querySelector("#word-list");
+
+    words.forEach(({ question, answer }) => {
+      list.innerHTML += `
+        <li>
+          ${question} :
+          <label>
+            <input class="answer-toggle" type="checkbox">
+            <span class="answer">${answer}</span>
+          </label>
+        </li>
+      `;
+    });
+  </script>
 </body>
 </html>
