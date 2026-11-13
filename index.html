@@ -20,9 +20,7 @@
   </style>
 </head>
 <body>
-  <select id="week-select"></select>
-  <h3 id="week-title"></h3>
-  <ul id="word-list"></ul>
+  <div id="week-list"></div>
   <script>
     const weeks = [
       {
@@ -124,40 +122,26 @@
       },
     ];
 
-    const weekSelect = document.querySelector("#week-select");
-    const weekTitle = document.querySelector("#week-title");
-    const list = document.querySelector("#word-list");
+    const weekList = document.querySelector("#week-list");
 
-    weeks.forEach((week, index) => {
-      weekSelect.innerHTML += `
-        <option value="${index}">${week.title}</option>
+    weeks.forEach(({ title, words }) => {
+      const section = document.createElement("section");
+      section.innerHTML = `
+        <h3>${title}</h3>
+        <ul>
+          ${words.map(({ question, answer }) => `
+            <li>
+              ${question} :
+              <label>
+                <input class="answer-toggle" type="checkbox">
+                <span class="answer">${answer}</span>
+              </label>
+            </li>
+          `).join("")}
+        </ul>
       `;
+      weekList.appendChild(section);
     });
-
-    function displayWeek(index) {
-      const week = weeks[index];
-
-      weekTitle.textContent = week.title;
-      list.innerHTML = "";
-
-      week.words.forEach(({ question, answer }) => {
-        list.innerHTML += `
-          <li>
-            ${question} :
-            <label>
-              <input class="answer-toggle" type="checkbox">
-              <span class="answer">${answer}</span>
-            </label>
-          </li>
-        `;
-      });
-    }
-
-    weekSelect.addEventListener("change", (event) => {
-      displayWeek(event.target.value);
-    });
-
-    displayWeek(0);
   </script>
 </body>
 </html>
