@@ -1,0 +1,12 @@
+.answer-toggle {
+  display: none;
+}
+
+.answer {
+  cursor: pointer;
+  filter: blur(0.4rem);
+}
+
+.answer-toggle:checked + .answer {
+  filter: none;
+}
